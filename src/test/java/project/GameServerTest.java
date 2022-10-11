@@ -295,4 +295,18 @@ public class GameServerTest {
         int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 400);
     }
+
+    // roll 2 (monkeys, skulls, swords), 1 diamond, 1 parrot, reroll 2 monkeys, get 2 diamonds, score 500
+    @Test
+    void Test69() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.DIAMOND, DiceRoll.SWORD, DiceRoll.SWORD};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{0, 1});
+        newRoll[0] = DiceRoll.DIAMOND;
+        newRoll[1] = DiceRoll.DIAMOND;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 500);
+    }
 }
