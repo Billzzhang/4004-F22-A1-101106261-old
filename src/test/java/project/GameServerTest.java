@@ -267,4 +267,32 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 9000);
     }
+
+    // roll 6 monkeys and 2 swords, reroll swords, get 2 monkeys, score (SC 4600 because of FC is coin and full chest)
+    @Test
+    void Test67() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.SWORD, DiceRoll.SWORD};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{1, 2});
+        newRoll[6] = DiceRoll.MONKEY;
+        newRoll[7] = DiceRoll.MONKEY;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 4600);
+    }
+
+    // roll 2 (monkeys/skulls/swords/parrots), reroll parrots, get 2 diamonds, score with FC is diamond (SC 400)
+    @Test
+    void Test68() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.DIAMOND;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{1, 2});
+        newRoll[4] = DiceRoll.DIAMOND;
+        newRoll[5] = DiceRoll.DIAMOND;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 400);
+    }
 }
