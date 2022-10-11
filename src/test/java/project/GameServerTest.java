@@ -404,4 +404,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 2000);
     }
+
+    // MONKEY BUSINESS - roll 3 monkeys 3 parrots  1 skull 1 coin  SC = 1100  (i.e., sequence of of 6 + coin)
+    @Test
+    void Test82() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.MONKEYPARROT;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.GOLD, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 1100);
+    }
 }
