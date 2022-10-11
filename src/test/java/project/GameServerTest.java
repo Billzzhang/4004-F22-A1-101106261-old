@@ -194,4 +194,23 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 1200);
     }
+
+    // roll 1 skull, 2 (monkeys/parrots) 3 swords, reroll 2 monkeys, get 1 skull 1 sword,
+    //          then reroll parrots get 1 sword 1 monkey (SC 600)
+    @Test
+    void Test60() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{1, 2});
+        newRoll[1] = DiceRoll.SKULL;
+        newRoll[2] = DiceRoll.SWORD;
+        newRoll = player.reroll(newRoll, new int[]{3, 4});
+        newRoll[3] = DiceRoll.MONKEY;
+        newRoll[4] = DiceRoll.SWORD;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 600);
+
+    }
 }
