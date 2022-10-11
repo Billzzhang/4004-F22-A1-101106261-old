@@ -20,6 +20,8 @@ public class GameServerTest {
         player = new Player();
     }
 
+    // PART 1 - getting first 40 marks    (SINGLE PLAYER SCORING)
+
     // die with 3 skulls 5 swords on first roll: player gets a score of 0
     @Test
     void Test45() {
@@ -349,5 +351,57 @@ public class GameServerTest {
         rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.SKULL, DiceRoll.SKULL};
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 600);
+    }
+
+    // PART 2 - Miscellaneous Fortune Cards and Full Chest bonus (SINGLE PLAYER SCORING)
+
+    // SORCERESS - roll 2 diamonds, 1 (sword/monkey/coin), 3 parrots, reroll 3 parrots, get 1 skull, 2 monkeys, reroll skull, get monkey (SC 500)
+    @Test
+    void Test77() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.SORCERESS;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.DIAMOND, DiceRoll.DIAMOND, DiceRoll.SWORD, DiceRoll.MONKEY, DiceRoll.GOLD, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{7, 5, 6});
+        newRoll[7] = DiceRoll.SKULL;
+        newRoll[5] = DiceRoll.MONKEY;
+        newRoll[6] = DiceRoll.MONKEY;
+        newRoll = player.reroll(newRoll, new int[]{7});
+        newRoll[7] = DiceRoll.MONKEY;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 500);
+    }
+
+    // SORCERESS - roll 3 skulls, 3 parrots, 2 swords, reroll skull, get parrot, reroll 2 swords, get parrots, score (SC 1000)
+    @Test
+    void Test78() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.SORCERESS;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{0});
+        newRoll[0] = DiceRoll.PARROT;
+        newRoll = player.reroll(rolls, new int[]{6,7});
+        newRoll[7] = DiceRoll.PARROT;
+        newRoll[6] = DiceRoll.PARROT;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 1000);
+    }
+
+    // SORCERESS - roll 1 skull, 4 parrots, 3 monkeys, reroll 3 monkeys, get 1 skull, 2 parrots, reroll skull, get parrot, score (SC 2000)
+    @Test
+    void Test79() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.SORCERESS;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{5,6,7});
+        newRoll[7] = DiceRoll.SKULL;
+        newRoll[5] = DiceRoll.PARROT;
+        newRoll[6] = DiceRoll.PARROT;
+        newRoll = player.reroll(rolls, new int[]{7});
+        newRoll[7] = DiceRoll.PARROT;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 2000);
     }
 }
