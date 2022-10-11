@@ -46,6 +46,7 @@ public class GameServer implements Serializable, Runnable {
             return 0;
         }
 
+        boolean fullChest = true;
         for (DiceRoll roll: rollFreq.keySet()) {
             switch (roll) {
                 case GOLD, DIAMOND -> score += 100 * rollFreq.get(roll);
@@ -56,12 +57,16 @@ public class GameServer implements Serializable, Runnable {
                 case 5 -> score += 500;
                 case 6 -> score += 1000;
                 case 7 -> score += 2000;
-                case 8 -> score += 4000;
+                case 8,9 -> score += 4000;
+                default -> {
+                    if (roll != DiceRoll.DIAMOND && roll != DiceRoll.GOLD) fullChest = false;
+                }
             }
 
         }
 
         if (card == FortuneCard.CAPTAIN) score = score * 2;
+        if (fullChest) score += 500;
 
         return score;
     }
