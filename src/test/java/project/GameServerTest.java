@@ -234,4 +234,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 2100);
     }
+
+    // score set of 8 coins on first roll (SC 5400)  seq of 8 + 9 coins(FC is coin) +  full chest  (no extra points for 9 coins)
+    @Test
+    void Test64() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 5400);
+    }
 }
