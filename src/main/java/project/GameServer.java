@@ -47,7 +47,7 @@ public class GameServer implements Serializable, Runnable {
 
         for (DiceRoll roll: rollFreq.keySet()) {
             switch (roll) {
-                case GOLD -> score += 100 * rollFreq.get(roll);
+                case GOLD, DIAMOND -> score += 100 * rollFreq.get(roll);
             }
             switch (rollFreq.get(roll)) {
                 case 3 -> score += 100;
@@ -59,6 +59,8 @@ public class GameServer implements Serializable, Runnable {
             }
 
         }
+
+        if (card == FortuneCard.CAPTAIN) score = score * 2;
 
         return score;
     }
