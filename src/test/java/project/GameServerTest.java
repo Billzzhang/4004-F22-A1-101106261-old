@@ -97,4 +97,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 4800);
     }
+
+    // score first roll with 2 (monkeys/parrot/diamonds/coins) and FC is captain (SC 800)
+    @Test
+    void Test52(){
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.CAPTAIN;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.DIAMOND, DiceRoll.DIAMOND, DiceRoll.MONKEY, DiceRoll.MONKEY};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 800);
+    }
 }
