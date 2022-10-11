@@ -26,9 +26,13 @@ public class GameServer implements Serializable, Runnable {
      * @param rolls An array of dice rolls
      * @return The score of the rolls, 0 if it results in death
      */
-    public int calculateScore( DiceRoll[] rolls ) {
+    public int calculateScore( DiceRoll[] rolls, FortuneCard card) {
         Map<DiceRoll, Integer> rollFreq = new HashMap<>();
+        int score = 0;
 
+        switch (card) {
+            case GOLD -> rollFreq.put(DiceRoll.GOLD, 1);
+        }
         // Add Dice Roll Frequency to hashmap
         for (int i = 0; i < rolls.length; i++) {
             if (!rollFreq.containsKey(rolls[i])) {
@@ -41,7 +45,22 @@ public class GameServer implements Serializable, Runnable {
             return 0;
         }
 
-        return Integer.parseInt(null);
+        for (DiceRoll roll: rollFreq.keySet()) {
+            switch (roll) {
+                case GOLD -> score += 100 * rollFreq.get(roll);
+            }
+            switch (rollFreq.get(roll)) {
+                case 3 -> score += 100;
+                case 4 -> score += 200;
+                case 5 -> score += 500;
+                case 6 -> score += 1000;
+                case 7 -> score += 2000;
+                case 8 -> score += 4000;
+            }
+
+        }
+
+        return score;
     }
 
     /**

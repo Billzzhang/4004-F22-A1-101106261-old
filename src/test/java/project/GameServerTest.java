@@ -27,7 +27,7 @@ public class GameServerTest {
         fortuneCard = FortuneCard.GOLD;
         DiceRoll[] rolls = player.rollAllDice();
         rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD};
-        int score = gameServer.calculateScore(rolls);
+        int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 0);
     }
 
@@ -42,7 +42,7 @@ public class GameServerTest {
         newRoll[5] = DiceRoll.SKULL;
         newRoll[6] = DiceRoll.SKULL;
         newRoll[7] = DiceRoll.SWORD;
-        int score = gameServer.calculateScore(newRoll);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 0);
     }
 
@@ -56,7 +56,7 @@ public class GameServerTest {
         DiceRoll[] newRoll = player.reroll(rolls, new int[]{5, 6});
         newRoll[5] = DiceRoll.SKULL;
         newRoll[6] = DiceRoll.SWORD;
-        int score = gameServer.calculateScore(newRoll);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 0);
     }
 
@@ -75,7 +75,7 @@ public class GameServerTest {
         newRoll = player.reroll(newRoll, new int[]{6, 7});
         newRoll[6] = DiceRoll.SKULL;
         newRoll[7] = DiceRoll.MONKEY;
-        int score = gameServer.calculateScore(newRoll);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 0);
     }
 
@@ -94,7 +94,7 @@ public class GameServerTest {
         newRoll[5] = DiceRoll.GOLD;
         newRoll[6] = DiceRoll.GOLD;
         newRoll[7] = DiceRoll.GOLD;
-        int score = gameServer.calculateScore(newRoll);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 4800);
     }
 }
