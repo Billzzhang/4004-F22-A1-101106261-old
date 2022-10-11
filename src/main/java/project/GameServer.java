@@ -16,7 +16,7 @@ public class GameServer implements Serializable, Runnable {
     /**
      * Calculates Score given dice rolls
      * @param rolls An array of dice rolls
-     * @return The score of the rolls, -1 if it results in death
+     * @return The score of the rolls, 0 if it results in death
      */
     public int calculateScore( DiceRoll[] rolls ) {
         Map<DiceRoll, Integer> rollFreq = new HashMap<>();
@@ -30,7 +30,7 @@ public class GameServer implements Serializable, Runnable {
         }
 
         if (rollFreq.containsKey(DiceRoll.SKULL) && rollFreq.get(DiceRoll.SKULL) == 3) {
-            return -1;
+            return 0;
         }
 
         return Integer.parseInt(null);

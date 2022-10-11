@@ -23,6 +23,6 @@ public class GameServerTest {
     void Test45() {
         DiceRoll[] rolls = {DiceRoll.SKULL,DiceRoll.SKULL,DiceRoll.SKULL,DiceRoll.SWORD,DiceRoll.SWORD,DiceRoll.SWORD,DiceRoll.SWORD,DiceRoll.SWORD};
         int score = gameServer.calculateScore(rolls);
-        assertEquals(score, -1);
+        assertEquals(score, 0);
     }
 }
