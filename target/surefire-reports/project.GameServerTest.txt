@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: project.GameServerTest
 -------------------------------------------------------------------------------
-Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s - in project.GameServerTest
+Tests run: 19, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.04 s <<< FAILURE! - in project.GameServerTest
+Test66  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: expected:<8500> but was:<9000>
+	at project.GameServerTest.Test66(GameServerTest.java:268)
+

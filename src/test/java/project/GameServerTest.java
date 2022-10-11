@@ -256,4 +256,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 5400);
     }
+
+    // score set of 8 swords on first roll and FC is captain (SC 4500x2 = 9000) since full chest
+    @Test
+    void Test66() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.CAPTAIN;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 9000);
+    }
 }
