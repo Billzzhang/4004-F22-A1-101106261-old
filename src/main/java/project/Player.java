@@ -15,5 +15,19 @@ import java.util.Scanner;
  */
 
 public class Player implements Serializable{
+    public DiceRoll[] reroll(DiceRoll[] originalRoll, int[] indices) {
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] < originalRoll.length && indices[i] >= 0) {
+                originalRoll[indices[i]] = rerollDice();
+            }
+        }
 
+        return originalRoll;
+    }
+
+    private DiceRoll rerollDice() {
+        DiceRoll[] rolls = {DiceRoll.SKULL, DiceRoll.MONKEY, DiceRoll.GOLD, DiceRoll.DIAMOND, DiceRoll.PARROT, DiceRoll.SWORD};
+        int random = (int) ((Math.random() * (6)));
+        return rolls[random];
+    }
 }
