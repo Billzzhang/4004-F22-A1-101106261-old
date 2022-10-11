@@ -32,6 +32,7 @@ public class GameServer implements Serializable, Runnable {
 
         switch (card) {
             case GOLD -> rollFreq.put(DiceRoll.GOLD, 1);
+            case DIAMOND -> rollFreq.put(DiceRoll.DIAMOND, 1);
         }
         // Add Dice Roll Frequency to hashmap
         for (int i = 0; i < rolls.length; i++) {
