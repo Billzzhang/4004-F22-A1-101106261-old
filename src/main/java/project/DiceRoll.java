@@ -36,5 +36,11 @@ public enum DiceRoll {
         public String toString() {
             return "Gold";
         }
+    },
+    MONKEYPARROT {
+        @Override
+        public String toString() {
+            return "Monkey and Parrot";
+        }
     }
 }

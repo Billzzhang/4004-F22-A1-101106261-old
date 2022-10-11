@@ -42,6 +42,12 @@ public class GameServer implements Serializable, Runnable {
             rollFreq.put(rolls[i], rollFreq.get(rolls[i]) + 1);
         }
 
+        if (card == FortuneCard.MONKEYPARROT && rollFreq.containsKey(DiceRoll.PARROT) && rollFreq.containsKey(DiceRoll.MONKEY)) {
+            rollFreq.put(DiceRoll.MONKEYPARROT, rollFreq.get(DiceRoll.PARROT) + rollFreq.get(DiceRoll.MONKEY));
+            rollFreq.remove(DiceRoll.MONKEY);
+            rollFreq.remove(DiceRoll.PARROT);
+        }
+
         if (rollFreq.containsKey(DiceRoll.SKULL) && rollFreq.get(DiceRoll.SKULL) == 3) {
             return 0;
         }
