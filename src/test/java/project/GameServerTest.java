@@ -144,4 +144,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 500);
     }
+
+    // roll 4 coins, 2 skulls, 2 swords and score (coins: 200 + 400 points) with FC is a diamond (SC 700)
+    @Test
+    void Test56() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.DIAMOND;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 700);
+    }
 }
