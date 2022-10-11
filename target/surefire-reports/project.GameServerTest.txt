@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: project.GameServerTest
 -------------------------------------------------------------------------------
-Tests run: 21, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.033 s <<< FAILURE! - in project.GameServerTest
-Test67  Time elapsed: 0.006 s  <<< FAILURE!
-java.lang.AssertionError: expected:<1800> but was:<4600>
-	at project.GameServerTest.Test67(GameServerTest.java:282)
-
-Test68  Time elapsed: 0.001 s  <<< FAILURE!
-java.lang.AssertionError: expected:<600> but was:<400>
-	at project.GameServerTest.Test68(GameServerTest.java:296)
-
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s - in project.GameServerTest

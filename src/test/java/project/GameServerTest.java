@@ -275,7 +275,7 @@ public class GameServerTest {
         fortuneCard = FortuneCard.GOLD;
         DiceRoll[] rolls = player.rollAllDice();
         rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.SWORD, DiceRoll.SWORD};
-        DiceRoll[] newRoll = player.reroll(rolls, new int[]{1, 2});
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{6, 7});
         newRoll[6] = DiceRoll.MONKEY;
         newRoll[7] = DiceRoll.MONKEY;
         int score = gameServer.calculateScore(newRoll, fortuneCard);
@@ -289,7 +289,7 @@ public class GameServerTest {
         fortuneCard = FortuneCard.DIAMOND;
         DiceRoll[] rolls = player.rollAllDice();
         rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD};
-        DiceRoll[] newRoll = player.reroll(rolls, new int[]{1, 2});
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{4, 5});
         newRoll[4] = DiceRoll.DIAMOND;
         newRoll[5] = DiceRoll.DIAMOND;
         int score = gameServer.calculateScore(newRoll, fortuneCard);
