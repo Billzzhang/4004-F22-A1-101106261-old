@@ -45,4 +45,18 @@ public class GameServerTest {
         int score = gameServer.calculateScore(newRoll);
         assertEquals(score, 0);
     }
+
+    // roll 2 skulls, 4 parrots, 2 swords, reroll swords, get 1 skull 1 sword  die
+    @Test
+    void Test47() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SKULL};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{5, 6});
+        newRoll[5] = DiceRoll.SKULL;
+        newRoll[6] = DiceRoll.SWORD;
+        int score = gameServer.calculateScore(newRoll);
+        assertEquals(score, 0);
+    }
 }
