@@ -166,4 +166,18 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 400);
     }
+
+    // roll 1 skull, 2 coins/parrots & 3 swords, reroll parrots, get 1 coin and 1 sword, score (SC = 200+400+200 = 800)
+    @Test
+    void Test58() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.SWORD};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{3, 4});
+        newRoll[3] = DiceRoll.GOLD;
+        newRoll[4] = DiceRoll.SWORD;
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 800);
+    }
 }
