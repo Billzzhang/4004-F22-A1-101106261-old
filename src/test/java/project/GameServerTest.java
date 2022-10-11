@@ -415,4 +415,29 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 1100);
     }
+
+    // MONKEY BUSINESS - roll 2 (monkeys/swords/parrots/coins), reroll 2 swords, get 1 monkey, 1 parrot, score 1700
+    @Test
+    void Test83() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.MONKEYPARROT;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.MONKEY, DiceRoll.MONKEY};
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{0,1});
+        newRoll[1] = DiceRoll.MONKEY;
+        newRoll[0] = DiceRoll.PARROT;
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
+        assertEquals(score, 1700);
+    }
+
+    // MONKEY BUSINESS - roll 3 skulls, 3 monkeys, 2 parrots => die scoring 0
+    @Test
+    void Test84() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.MONKEYPARROT;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.MONKEY, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.MONKEY, DiceRoll.MONKEY};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 0);
+    }
 }
