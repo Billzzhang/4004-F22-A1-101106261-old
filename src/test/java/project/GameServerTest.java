@@ -326,6 +326,7 @@ public class GameServerTest {
     }
 
     // roll 1 skull, 2 coins, 1 (monkey/parrot), 3 swords, reroll swords, get 1 (coin/monkey/parrot) with FC is diamond (SC 500)
+    @Test
     void Test71() {
         FortuneCard fortuneCard = gameServer.drawFortuneCard();
         fortuneCard = FortuneCard.DIAMOND;
