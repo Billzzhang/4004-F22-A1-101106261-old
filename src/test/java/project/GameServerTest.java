@@ -133,4 +133,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 300);
     }
+
+    // roll 3 diamonds, 2 skulls, 1 monkey, 1 sword, 1 parrot, score (diamonds = 100 + 300 points)   (SC 500)
+    @Test
+    void Test55() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.SWORD, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.PARROT, DiceRoll.DIAMOND, DiceRoll.DIAMOND, DiceRoll.DIAMOND};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 500);
+    }
 }
