@@ -1,6 +1,9 @@
 package project;
 
+import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +14,11 @@ import java.util.Map;
 
 public class GameServer implements Serializable, Runnable {
     public void run() {
+    }
+
+    ArrayList<FortuneCard> fortuneCards;
+    public GameServer() {
+        fortuneCards = initializeFortuneCards();
     }
 
     /**
@@ -34,5 +42,44 @@ public class GameServer implements Serializable, Runnable {
         }
 
         return Integer.parseInt(null);
+    }
+
+    /**
+     * Draws the first fortune card in the deck and returns it to the bottom
+     * @return the first fortune card
+     */
+    public FortuneCard drawFortuneCard() {
+        FortuneCard card = fortuneCards.remove(0);
+        fortuneCards.add(card);
+        return card;
+    }
+
+    /**
+     * Creates an array with the following cards shuffled
+     * 4xChest, 4xSorceress, 4xCaptain, 4xMonkey&Parrot, 4xDiamond, 4xCoin (Doublon),
+     * 2x2skulls, 3x1skull, 2x2swords(300 bonus), 2x3swords(500 bonus), 2x4swords(1000 bonus)
+     * @return An array list with the above fortune cards
+     */
+    private ArrayList<FortuneCard> initializeFortuneCards() {
+        ArrayList<FortuneCard> cards = new ArrayList<>();
+        for(int i = 0; i < 4; i++) {
+            cards.add(FortuneCard.CHEST);
+            cards.add(FortuneCard.SORCERESS);
+            cards.add(FortuneCard.CAPTAIN);
+            cards.add(FortuneCard.MONKEYPARROT);
+            cards.add(FortuneCard.DIAMOND);
+            cards.add(FortuneCard.GOLD);
+        }
+        for(int i = 0; i < 3; i++) {
+            cards.add(FortuneCard.SINGLESKULL);
+        }
+        for(int i = 0; i < 2; i++) {
+            cards.add(FortuneCard.DOUBLESKULL);
+            cards.add(FortuneCard.DOUBLESWORDS);
+            cards.add(FortuneCard.TRIPLESWORDS);
+            cards.add(FortuneCard.QUADRUPLESWORDS);
+        }
+        Collections.shuffle(cards);
+        return cards;
     }
 }

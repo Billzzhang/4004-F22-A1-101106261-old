@@ -10,8 +10,6 @@ import java.util.Scanner;
 /**
  * Player object that connects to GameServer
  *
- * @author Sebastian Gadzinski
- * @author Tarnish
  */
 
 public class Player implements Serializable{
@@ -23,6 +21,14 @@ public class Player implements Serializable{
         }
 
         return originalRoll;
+    }
+
+    public DiceRoll[] rollAllDice() {
+        DiceRoll[] diceRolls = new DiceRoll[8];
+        for (int i = 0; i < diceRolls.length; i++) {
+            diceRolls[i] = rerollDice();
+        }
+        return diceRolls;
     }
 
     private DiceRoll rerollDice() {
