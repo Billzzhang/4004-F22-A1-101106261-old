@@ -212,4 +212,26 @@ public class GameServerTest {
         int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 600);
     }
+
+    // score set of 6 monkeys and 2 skulls on first roll (SC 1100)
+    @Test
+    void Test62() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.SKULL, DiceRoll.SKULL};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 1100);
+    }
+
+    // score set of 7 monkeys and 1 skulls on first roll (SC 1100)
+    @Test
+    void Test63() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SKULL};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 2100);
+    }
 }

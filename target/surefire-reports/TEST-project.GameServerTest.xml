@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="project.GameServerTest" time="0.027" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="project.GameServerTest" time="0.025" tests="16" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CA"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\Bill\AppData\Local\Temp\surefire6514530323409807031\surefirebooter16657978840500396727.jar C:\Users\Bill\AppData\Local\Temp\surefire6514530323409807031 2022-10-11T18-23-05_435-jvmRun1 surefire6539513088027873297tmp surefire_03108286721755853547tmp"/>
+    <property name="sun.java.command" value="C:\Users\Bill\AppData\Local\Temp\surefire17280028390346281730\surefirebooter16511535930818445053.jar C:\Users\Bill\AppData\Local\Temp\surefire17280028390346281730 2022-10-11T18-27-27_847-jvmRun1 surefire10076787941286576273tmp surefire_011654221104955567297tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Bill\OneDrive - Carleton University\Documents\Uni 2022-2023\COMP4004\A1\target\test-classes;C:\Users\Bill\OneDrive - Carleton University\Documents\Uni 2022-2023\COMP4004\A1\target\classes;C:\Users\Bill\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.2.0\junit-jupiter-engine-5.2.0.jar;C:\Users\Bill\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\Bill\.m2\repository\org\junit\platform\junit-platform-engine\1.2.0\junit-platform-engine-1.2.0.jar;C:\Users\Bill\.m2\repository\org\junit\platform\junit-platform-commons\1.2.0\junit-platform-commons-1.2.0.jar;C:\Users\Bill\.m2\repository\org\opentest4j\opentest4j\1.1.0\opentest4j-1.1.0.jar;C:\Users\Bill\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.2.0\junit-jupiter-api-5.2.0.jar;C:\Users\Bill\.m2\repository\org\junit\platform\junit-platform-runner\1.2.0\junit-platform-runner-1.2.0.jar;C:\Users\Bill\.m2\repository\org\junit\platform\junit-platform-launcher\1.2.0\junit-platform-launcher-1.2.0.jar;C:\Users\Bill\.m2\repository\org\junit\platform\junit-platform-suite-api\1.2.0\junit-platform-suite-api-1.2.0.jar;C:\Users\Bill\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Bill\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Bill\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.1\junit-jupiter-5.9.1.jar;C:\Users\Bill\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.1\junit-jupiter-params-5.9.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Bill\AppData\Local\Temp\surefire6514530323409807031\surefirebooter16657978840500396727.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Bill\AppData\Local\Temp\surefire17280028390346281730\surefirebooter16511535930818445053.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -58,8 +58,8 @@
   </properties>
   <testcase name="Test45" classname="project.GameServerTest" time="0.011"/>
   <testcase name="Test46" classname="project.GameServerTest" time="0"/>
-  <testcase name="Test47" classname="project.GameServerTest" time="0.001"/>
-  <testcase name="Test48" classname="project.GameServerTest" time="0.001"/>
+  <testcase name="Test47" classname="project.GameServerTest" time="0"/>
+  <testcase name="Test48" classname="project.GameServerTest" time="0"/>
   <testcase name="Test50" classname="project.GameServerTest" time="0.001"/>
   <testcase name="Test52" classname="project.GameServerTest" time="0"/>
   <testcase name="Test53" classname="project.GameServerTest" time="0"/>
@@ -67,7 +67,9 @@
   <testcase name="Test55" classname="project.GameServerTest" time="0.001"/>
   <testcase name="Test56" classname="project.GameServerTest" time="0"/>
   <testcase name="Test57" classname="project.GameServerTest" time="0"/>
-  <testcase name="Test58" classname="project.GameServerTest" time="0.001"/>
+  <testcase name="Test58" classname="project.GameServerTest" time="0"/>
   <testcase name="Test59" classname="project.GameServerTest" time="0"/>
-  <testcase name="Test60" classname="project.GameServerTest" time="0"/>
+  <testcase name="Test60" classname="project.GameServerTest" time="0.001"/>
+  <testcase name="Test62" classname="project.GameServerTest" time="0"/>
+  <testcase name="Test63" classname="project.GameServerTest" time="0.001"/>
 </testsuite>
