@@ -245,4 +245,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 5400);
     }
+
+    // score set of 8 coins on first roll and FC is diamond (SC 5400)
+    @Test
+    void Test65() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.DIAMOND;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 5400);
+    }
 }
