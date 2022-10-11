@@ -339,4 +339,15 @@ public class GameServerTest {
         int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 500);
     }
+
+    // get 4 monkeys, 2 coins and 2 skulls with FC coin. Score 600
+    @Test
+    void Test72() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.MONKEY, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.SKULL, DiceRoll.SKULL};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 600);
+    }
 }
