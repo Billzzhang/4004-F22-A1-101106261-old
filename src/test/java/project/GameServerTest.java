@@ -121,6 +121,16 @@ public class GameServerTest {
         newRoll[0] = DiceRoll.MONKEY;
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 300);
+    }
 
+    // roll 3 (monkey, swords) + 2 skulls and score   (SC 300)
+    @Test
+    void Test54() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.GOLD;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.MONKEY, DiceRoll.SWORD, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.MONKEY, DiceRoll.MONKEY};
+        int score = gameServer.calculateScore(rolls, fortuneCard);
+        assertEquals(score, 300);
     }
 }
