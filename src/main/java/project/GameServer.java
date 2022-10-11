@@ -65,8 +65,8 @@ public class GameServer implements Serializable, Runnable {
 
         }
 
-        if (card == FortuneCard.CAPTAIN) score = score * 2;
         if (fullChest) score += 500;
+        if (card == FortuneCard.CAPTAIN) score = score * 2;
 
         return score;
     }
