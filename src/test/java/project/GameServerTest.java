@@ -119,7 +119,7 @@ public class GameServerTest {
         DiceRoll[] newRoll = player.reroll(rolls, new int[]{0, 1});
         newRoll[1] = DiceRoll.SWORD;
         newRoll[0] = DiceRoll.MONKEY;
-        int score = gameServer.calculateScore(rolls, fortuneCard);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 300);
     }
 
@@ -177,7 +177,7 @@ public class GameServerTest {
         DiceRoll[] newRoll = player.reroll(rolls, new int[]{3, 4});
         newRoll[3] = DiceRoll.GOLD;
         newRoll[4] = DiceRoll.SWORD;
-        int score = gameServer.calculateScore(rolls, fortuneCard);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 800);
     }
 
@@ -191,7 +191,7 @@ public class GameServerTest {
         DiceRoll[] newRoll = player.reroll(rolls, new int[]{3, 4});
         newRoll[3] = DiceRoll.GOLD;
         newRoll[4] = DiceRoll.SWORD;
-        int score = gameServer.calculateScore(rolls, fortuneCard);
+        int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 1200);
     }
 
@@ -211,6 +211,5 @@ public class GameServerTest {
         newRoll[4] = DiceRoll.SWORD;
         int score = gameServer.calculateScore(newRoll, fortuneCard);
         assertEquals(score, 600);
-
     }
 }
