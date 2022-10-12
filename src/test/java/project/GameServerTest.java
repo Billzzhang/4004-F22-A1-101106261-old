@@ -465,4 +465,28 @@ public class GameServerTest {
         int score = gameServer.calculateScore(player.getStored(), fortuneCard);
         assertEquals(score, 1100);
     }
+
+    // roll 2 skulls, 3 parrots, 3 coins   put 3 coins in chest
+    //   then rerolls 3 parrots and get 2 diamonds 1 coin    put coin in chest (now 4)
+    //    then reroll 2 diamonds and get 1 skull 1 coin     score for chest only = 400 + 200 = 600 AND report death
+    @Test
+    void Test94() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.CHEST;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SKULL, DiceRoll.SKULL, DiceRoll.GOLD, DiceRoll.GOLD, DiceRoll.GOLD};
+        player.store(rolls, new int[]{5, 6, 7});
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{0,1,2});
+        newRoll[0] = DiceRoll.DIAMOND;
+        newRoll[1] = DiceRoll.DIAMOND;
+        newRoll[2] = DiceRoll.GOLD;
+        player.store(newRoll, new int[]{2});
+        newRoll = player.reroll(rolls, new int[]{0,1});
+        newRoll[0] = DiceRoll.GOLD;
+        newRoll[1] = DiceRoll.SKULL;
+        int score = gameServer.calculateScore(player.getStored(), fortuneCard);
+        player.calculateStatus(newRoll);
+        assertTrue(player.isDead());
+        assertEquals(score, 600);
+    }
 }
