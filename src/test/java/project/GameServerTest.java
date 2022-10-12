@@ -440,4 +440,29 @@ public class GameServerTest {
         int score = gameServer.calculateScore(rolls, fortuneCard);
         assertEquals(score, 0);
     }
+
+    //roll 3 parrots, 2 swords, 2 diamonds, 1 coin     put 2 diamonds and 1 coin in chest
+    //  then reroll 2 swords and get 2 parrots put 5 parrots in chest and take out 2 diamonds & coin
+    //  then reroll the 3 dice and get 1 skull, 1 coin and a parrot
+    //   score 6 parrots + 1 coin for 1100 points
+    @Test
+    void Test90() {
+        FortuneCard fortuneCard = gameServer.drawFortuneCard();
+        fortuneCard = FortuneCard.CHEST;
+        DiceRoll[] rolls = player.rollAllDice();
+        rolls = new DiceRoll[]{DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.DIAMOND, DiceRoll.DIAMOND, DiceRoll.GOLD};
+        player.store(rolls, new int[]{5, 6, 7});
+        DiceRoll[] newRoll = player.reroll(rolls, new int[]{3,4});
+        newRoll[1] = DiceRoll.PARROT;
+        newRoll[0] = DiceRoll.PARROT;
+        player.store(new int[]{0, 1, 2, 3, 4});
+        player.takeOut(new int[]{5, 6, 7});
+        newRoll = player.reroll(newRoll, new int[]{5, 6, 7});
+        newRoll[5] = DiceRoll.SKULL;
+        newRoll[6] = DiceRoll.GOLD;
+        newRoll[7] = DiceRoll.PARROT;
+        player.store(new int[]{6,7});
+        int score = gameServer.calculateScore(player.getStored(), fortuneCard);
+        assertEquals(score, 1100);
+    }
 }
