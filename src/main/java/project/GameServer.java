@@ -54,6 +54,10 @@ public class GameServer implements Serializable, Runnable {
 
         boolean fullChest = true;
         for (DiceRoll roll: rollFreq.keySet()) {
+            if (roll == DiceRoll.INVALID) {
+                fullChest = false;
+                continue;
+            }
             switch (roll) {
                 case GOLD, DIAMOND -> score += 100 * rollFreq.get(roll);
             }

@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,11 @@ import java.util.Scanner;
  */
 
 public class Player implements Serializable{
+    private DiceRoll[] stored;
+    public Player() {
+        stored = new DiceRoll[8];
+        Arrays.fill(stored, DiceRoll.INVALID);
+    }
     public DiceRoll[] reroll(DiceRoll[] originalRoll, int[] indices) {
         for (int i = 0; i < indices.length; i++) {
             if (indices[i] < originalRoll.length && indices[i] >= 0) {
@@ -21,6 +27,18 @@ public class Player implements Serializable{
         }
 
         return originalRoll;
+    }
+
+    public void store(DiceRoll[] rolls, int[] indices) {
+        for (int i = 0 ; i < indices.length; i++) {
+            stored[indices[i]] = rolls[indices[i]];
+        }
+    }
+
+    public void takeOut(int[] indices) {
+        for (int i = 0 ; i < indices.length; i++) {
+            stored[indices[i]] = DiceRoll.INVALID;
+        }
     }
 
     public DiceRoll[] rollAllDice() {
@@ -36,4 +54,9 @@ public class Player implements Serializable{
         int random = (int) ((Math.random() * (6)));
         return rolls[random];
     }
+
+    public DiceRoll[] getStored() {
+        return stored;
+    }
+
 }

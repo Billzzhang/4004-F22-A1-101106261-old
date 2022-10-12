@@ -42,5 +42,10 @@ public enum DiceRoll {
         public String toString() {
             return "Monkey and Parrot";
         }
-    }
+    },INVALID {
+        @Override
+        public String toString() {
+            return "Invalid";
+        }
+    },
 }
