@@ -453,15 +453,15 @@ public class GameServerTest {
         rolls = new DiceRoll[]{DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.PARROT, DiceRoll.SWORD, DiceRoll.SWORD, DiceRoll.DIAMOND, DiceRoll.DIAMOND, DiceRoll.GOLD};
         player.store(rolls, new int[]{5, 6, 7});
         DiceRoll[] newRoll = player.reroll(rolls, new int[]{3,4});
-        newRoll[1] = DiceRoll.PARROT;
-        newRoll[0] = DiceRoll.PARROT;
-        player.store(new int[]{0, 1, 2, 3, 4});
+        newRoll[3] = DiceRoll.PARROT;
+        newRoll[4] = DiceRoll.PARROT;
+        player.store(newRoll, new int[]{0, 1, 2, 3, 4});
         player.takeOut(new int[]{5, 6, 7});
         newRoll = player.reroll(newRoll, new int[]{5, 6, 7});
         newRoll[5] = DiceRoll.SKULL;
         newRoll[6] = DiceRoll.GOLD;
         newRoll[7] = DiceRoll.PARROT;
-        player.store(new int[]{6,7});
+        player.store(newRoll, new int[]{6,7});
         int score = gameServer.calculateScore(player.getStored(), fortuneCard);
         assertEquals(score, 1100);
     }
